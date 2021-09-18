@@ -1,7 +1,5 @@
 # 13 Object-Relational Mapping (ORM): E-Commerce Back End
 
-## Your Task
-
 Internet retail, also known as **e-commerce**, is the largest sector of the electronics industry, generating an estimated $29 trillion in 2019. E-commerce platforms like Shopify and WooCommerce provide a suite of services to businesses of all sizes. Due to their prevalence, understanding the fundamental architecture of these platforms will benefit you as a full-stack web developer.
 
 Your task is to build the back end for an e-commerce site by modifying starter code. You’ll configure a working Express.js API to use Sequelize to interact with a MySQL database.
@@ -48,201 +46,114 @@ The following animation shows the application's POST, PUT, and DELETE routes for
 
 Your walkthrough video should also show the POST, PUT, and DELETE routes for products and tags being tested in Insomnia Core.
 
-## Getting Started
-
-You’ll need to use the [MySQL2](https://www.npmjs.com/package/mysql2) and [Sequelize](https://www.npmjs.com/package/sequelize) packages to connect your Express.js API to a MySQL database and the [dotenv](https://www.npmjs.com/package/dotenv) package to use environment variables to store sensitive data.
-
-Use the `schema.sql` file in the `db` folder to create your database with MySQL shell commands. Use environment variables to store sensitive data like your MySQL username, password, and database name.
-
 ### Database Models
 
 Your database should contain the following four models, including the requirements listed for each model:
 
-* `Category`
-
-  * `id`
+- `Category`
 
-    * Integer.
-  
-    * Doesn't allow null values.
-  
-    * Set as primary key.
-  
-    * Uses auto increment.
+  - `id`
 
-  * `category_name`
-  
-    * String.
-  
-    * Doesn't allow null values.
+    - Integer.
 
-* `Product`
+    - Doesn't allow null values.
 
-  * `id`
-  
-    * Integer.
-  
-    * Doesn't allow null values.
-  
-    * Set as primary key.
-  
-    * Uses auto increment.
+    - Set as primary key.
 
-  * `product_name`
-  
-    * String.
-  
-    * Doesn't allow null values.
+    - Uses auto increment.
 
-  * `price`
-  
-    * Decimal.
-  
-    * Doesn't allow null values.
-  
-    * Validates that the value is a decimal.
+  - `category_name`
 
-  * `stock`
-  
-    * Integer.
-  
-    * Doesn't allow null values.
-  
-    * Set a default value of `10`.
-  
-    * Validates that the value is numeric.
+    - String.
 
-  * `category_id`
-  
-    * Integer.
-  
-    * References the `Category` model's `id`.
+    - Doesn't allow null values.
 
-* `Tag`
+- `Product`
 
-  * `id`
-  
-    * Integer.
-  
-    * Doesn't allow null values.
-  
-    * Set as primary key.
-  
-    * Uses auto increment.
+  - `id`
 
-  * `tag_name`
-  
-    * String.
+    - Integer.
 
-* `ProductTag`
+    - Doesn't allow null values.
 
-  * `id`
+    - Set as primary key.
 
-    * Integer.
+    - Uses auto increment.
 
-    * Doesn't allow null values.
+  - `product_name`
 
-    * Set as primary key.
+    - String.
 
-    * Uses auto increment.
+    - Doesn't allow null values.
 
-  * `product_id`
+  - `price`
 
-    * Integer.
+    - Decimal.
 
-    * References the `Product` model's `id`.
+    - Doesn't allow null values.
 
-  * `tag_id`
+    - Validates that the value is a decimal.
 
-    * Integer.
+  - `stock`
 
-    * References the `Tag` model's `id`.
+    - Integer.
 
-### Associations
+    - Doesn't allow null values.
 
-You'll need to execute association methods on your Sequelize models to create the following relationships between them:
+    - Set a default value of `10`.
 
-* `Product` belongs to `Category`, and `Category` has many `Product` models, as a category can have multiple products but a product can only belong to one category.
+    - Validates that the value is numeric.
 
-* `Product` belongs to many `Tag` models, and `Tag` belongs to many `Product` models. Allow products to have multiple tags and tags to have many products by using the `ProductTag` through model.
+  - `category_id`
 
-> **Hint:** Make sure you set up foreign key relationships that match the column we created in the respective models.
+    - Integer.
 
-### Fill Out the API Routes to Perform RESTful CRUD Operations
+    - References the `Category` model's `id`.
 
-Fill out the unfinished routes in `product-routes.js`, `tag-routes.js`, and `category-routes.js` to perform create, read, update, and delete operations using your Sequelize models.
+- `Tag`
 
-Note that the functionality for creating the many-to-many relationship for products has already been completed for you.
+  - `id`
 
-> **Hint**: Be sure to look at the mini-project code for syntax help and use your model's column definitions to figure out what `req.body` will be for POST and PUT routes!
+    - Integer.
 
-### Seed the Database
+    - Doesn't allow null values.
 
-After creating the models and routes, run `npm run seed` to seed data to your database so that you can test your routes.
+    - Set as primary key.
 
-### Sync Sequelize to the Database on Server Start
+    - Uses auto increment.
 
-Create the code needed in `server.js` to sync the Sequelize models to the MySQL database on server start.
+  - `tag_name`
 
-## Grading Requirements
+    - String.
 
-This homework is graded based on the following criteria: 
+- `ProductTag`
 
-### Deliverables: 10%
+  - `id`
 
-* The GitHub repository containing your application code.
+    - Integer.
 
-### Walkthrough Video: 37%
+    - Doesn't allow null values.
 
-* A walkthrough video that demonstrates the functionality of the e-commerce back end must be submitted, and a link to the video should be included in your readme file.
+    - Set as primary key.
 
-* The walkthrough video must show all of the technical acceptance criteria being met.
+    - Uses auto increment.
 
-* The walkthrough video must demonstrate how to create the schema from the MySQL shell.
+  - `product_id`
 
-* The walkthrough video must demonstrate how to seed the database from the command line.
+    - Integer.
 
-* The walkthrough video must demonstrate how to start the application’s server.
+    - References the `Product` model's `id`.
 
-* The walkthrough video must demonstrate GET routes for all categories, all products, and all tags being tested in Insomnia Core.
+  - `tag_id`
 
-* The walkthrough video must demonstrate GET routes for a single category, a single product, and a single tag being tested in Insomnia Core.
+    - Integer.
 
-* The walkthrough video must demonstrate POST, PUT, and DELETE routes for categories, products, and tags being tested in Insomnia Core.
+    - References the `Tag` model's `id`.
 
-### Technical Acceptance Criteria: 40%
-
-* Satisfies all of the preceding acceptance criteria plus the following:
-
-  * Connects to a MySQL database using the [MySQL2](https://www.npmjs.com/package/mysql) and [Sequelize](https://www.npmjs.com/package/sequelize) packages.
-
-  * Stores sensitive data, like a user’s MySQL username, password, and database name, using environment variables through the [dotenv](https://www.npmjs.com/package/dotenv) package.
-
-  * Syncs Sequelize models to a MySQL database on the server start.
-
-  * Includes column definitions for all four models outlined in the homework instructions.
-
-  * Includes model associations outlined in the homework instructions.
-
-### Repository Quality: 13%
-
-* Repository has a unique name.
-
-* Repository follows best practices for file structure and naming conventions.
-
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-* Repository contains multiple descriptive commit messages.
-
-* Repository contains quality readme with description and a link to a walkthrough video.
-
-## Review
-
-You are required to submit BOTH of the following for review:
-
-* A walkthrough video demonstrating the functionality of the application and all of the acceptance criteria being met.
-
-* The URL of the GitHub repository. Give the repository a unique name and include a readme describing the project.
+## Contact
+
+- Name: Nafis Rahman
+- Email: nmr278@nyu.edu
+- Github: [Naf15](http://www.github.com/Naf15)
 
 ---
-© 2021 Trilogy Education Services, LLC, a 2U, Inc. brand. Confidential and Proprietary. All Rights Reserved.
